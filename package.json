@@ -1,17 +1,40 @@
 {
-  "name": "astro-react",
-  "type": "module",
-  "version": "0.0.1",
-  "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
-    "build": "astro check && astro build",
-    "preview": "astro preview",
-    "astro": "astro"
-  },
-  "dependencies": {
-    "astro": "^4.16.1",
-    "@astrojs/check": "^0.9.4",
-    "typescript": "^5.6.3"
-  }
+    "name": "astro-react",
+    "type": "module",
+    "version": "0.0.1",
+    "scripts": {
+        "dev": "astro dev",
+        "start": "astro dev",
+        "build": "astro check && astro build",
+        "preview": "astro preview",
+        "lint": "eslint . --report-unused-disable-directives --max-warnings 0 --config eslint.config.js",
+        "format": "prettier --write \"src/**/*.{astro,js,jsx,ts,tsx,json,css,scss}\"",
+        "astro": "astro"
+    },
+    "dependencies": {
+        "@astrojs/check": "^0.9.4",
+        "@astrojs/react": "^3.6.2",
+        "@types/react": "^18.3.11",
+        "astro": "^4.16.2",
+        "react": "^18.3.1",
+        "react-dom": "^18.3.1",
+        "typescript": "^5.6.3"
+    },
+    "devDependencies": {
+        "@eslint/js": "^9.12.0",
+        "@trivago/prettier-plugin-sort-imports": "^4.3.0",
+        "@types/react": "^18.3.11",
+        "@types/react-dom": "^18.3.1",
+        "@typescript-eslint/eslint-plugin": "^8.8.1",
+        "@typescript-eslint/parser": "^8.8.1",
+        "astro-eslint-parser": "^1.0.3",
+        "cssnano": "^7.0.6",
+        "eslint": "^9.12.0",
+        "eslint-plugin-astro": "^1.2.4",
+        "eslint-plugin-react-hooks": "^5.0.0",
+        "eslint-plugin-react-refresh": "^0.4.12",
+        "prettier": "^3.3.3",
+        "prettier-plugin-astro": "^0.14.1",
+        "typescript-eslint": "^8.8.1"
+    }
 }
