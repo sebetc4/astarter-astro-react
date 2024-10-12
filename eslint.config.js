@@ -17,7 +17,7 @@ export default [
         },
     },
     {
-        files: ['**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
+        files: ['**/*.{js,jsx,ts,tsx}'],
         languageOptions: {
             ecmaVersion: 'latest',
             sourceType: 'module',
@@ -30,11 +30,20 @@ export default [
         },
         plugins: {
             '@typescript-eslint': tseslint.plugin,
+            'react-hooks': reactHooks,
+            'react-refresh': reactRefresh,
             prettier: eslintPluginPrettier,
         },
         rules: {
+            'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
+            ...reactHooks.configs.recommended.rules,
             ...eslintPluginPrettier.configs.recommended.rules,
             'prettier/prettier': 'error',
+        },
+        settings: {
+            react: {
+                version: 'detect',
+            },
         },
     },
     {

@@ -8,7 +8,8 @@
         "build": "astro check && astro build",
         "preview": "astro preview",
         "lint": "eslint . --report-unused-disable-directives --max-warnings 0 --config eslint.config.js",
-        "format": "prettier --write \"src/**/*.{astro,js,jsx,ts,tsx,json,css,scss}\"",
+        "lint:fix": "eslint . --report-unused-disable-directives --max-warnings 0 --config eslint.config.js --fix",
+        "format": "prettier --write .",
         "astro": "astro"
     },
     "dependencies": {
