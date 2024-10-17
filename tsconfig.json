@@ -3,13 +3,15 @@
     "compilerOptions": {
         "jsx": "react-jsx",
         "jsxImportSource": "react",
-        "baseUrl": ".",
+        "skipLibCheck": true,
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "forceConsistentCasingInFileNames": true,
+        "baseUrl": "./",
         "paths": {
             "@/*": ["./src/*"],
-            "@react-comp": ["./src/components/react"],
-            "@react-comp/*": ["./src/components/react/*"],
-            "@astro-comp": ["./src/components/astro"],
-            "@astro-comp/*": ["./src/components/astro/*"]
-        }
-    }
+        },
+    },
+    "include": ["src/**/*"],
+    "exclude": ["node_modules", "dist"]
 }

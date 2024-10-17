@@ -3,8 +3,24 @@ import astroParser from 'astro-eslint-parser'
 import prettier from 'eslint-config-prettier'
 import eslintPluginAstro from 'eslint-plugin-astro'
 import eslintPluginPrettier from 'eslint-plugin-prettier'
+import eslintPluginReact from 'eslint-plugin-react'
+import eslintPluginReactHooks from 'eslint-plugin-react-hooks'
+import eslintPluginReactRefresh from 'eslint-plugin-react-refresh'
 import globals from 'globals'
 import tseslint from 'typescript-eslint'
+
+const commonRules = {
+    'prettier/prettier': 'warn',
+    '@typescript-eslint/no-unused-vars': [
+        'warn',
+        {
+            vars: 'all',
+            args: 'all',
+            ignoreRestSiblings: false,
+            argsIgnorePattern: '^_',
+        },
+    ],
+}
 
 export default [
     eslint.configs.recommended,
@@ -13,36 +29,42 @@ export default [
         languageOptions: {
             globals: {
                 ...globals.node,
+                ...globals.browser,
+            },
+            parserOptions: {
+                ecmaVersion: 'latest',
+                sourceType: 'module',
             },
         },
     },
     {
         files: ['**/*.{js,jsx,ts,tsx}'],
         languageOptions: {
-            ecmaVersion: 'latest',
-            sourceType: 'module',
             parser: tseslint.parser,
-            parserOptions: {
-                ecmaFeatures: {
-                    jsx: true,
-                },
-            },
         },
         plugins: {
             '@typescript-eslint': tseslint.plugin,
-            'react-hooks': reactHooks,
-            'react-refresh': reactRefresh,
+            react: eslintPluginReact,
+            'react-hooks': eslintPluginReactHooks,
+            'react-refresh': eslintPluginReactRefresh,
             prettier: eslintPluginPrettier,
         },
         rules: {
-            'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
-            ...reactHooks.configs.recommended.rules,
+            ...commonRules,
+            ...eslintPluginReactHooks.configs.recommended.rules,
             ...eslintPluginPrettier.configs.recommended.rules,
-            'prettier/prettier': 'error',
+            ...eslintPluginReact.configs.recommended.rules,
+            'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
+            'react/prop-types': 'off',
+            'react/react-in-jsx-scope': 'off',
+            'react-hooks/exhaustive-deps': 'warn',
         },
         settings: {
             react: {
                 version: 'detect',
+            },
+            'import/resolver': {
+                typescript: {},
             },
         },
     },
@@ -60,13 +82,14 @@ export default [
             prettier: eslintPluginPrettier,
         },
         rules: {
+            ...commonRules,
             ...eslintPluginAstro.configs.recommended.rules,
             ...eslintPluginPrettier.configs.recommended.rules,
-            'prettier/prettier': 'error',
+            'astro/no-set-html-directive': 'error',
         },
     },
     {
-        ignores: ['dist/**', '.astro/**'],
+        ignores: ['dist/**', '.astro/**', 'node_modules/**'],
     },
     prettier,
 ]
