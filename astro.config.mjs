@@ -1,15 +1,12 @@
 // @ts-check
 import react from '@astrojs/react'
+import sitemap from '@astrojs/sitemap'
 import { defineConfig } from 'astro/config'
 import cssnano from 'cssnano'
 import variableCompress from 'postcss-variable-compress'
-import sitemap from '@astrojs/sitemap';
 
-const isProd = import.meta.env.PROD;
+const isProd = import.meta.env.PROD
 
-console.log('isProd', isProd);
-
-// https://astro.build/config
 export default defineConfig({
     integrations: [react(), sitemap()],
     vite: {

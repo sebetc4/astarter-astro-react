@@ -50,10 +50,10 @@ export default [
             prettier: eslintPluginPrettier,
         },
         rules: {
-            ...commonRules,
+            ...eslintPluginReact.configs.recommended.rules,
             ...eslintPluginReactHooks.configs.recommended.rules,
             ...eslintPluginPrettier.configs.recommended.rules,
-            ...eslintPluginReact.configs.recommended.rules,
+            ...commonRules,
             'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
             'react/prop-types': 'off',
             'react/react-in-jsx-scope': 'off',
@@ -82,9 +82,9 @@ export default [
             prettier: eslintPluginPrettier,
         },
         rules: {
-            ...commonRules,
             ...eslintPluginAstro.configs.recommended.rules,
             ...eslintPluginPrettier.configs.recommended.rules,
+            ...commonRules,
             'astro/no-set-html-directive': 'error',
         },
     },
